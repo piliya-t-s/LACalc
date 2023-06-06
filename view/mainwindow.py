@@ -1,3 +1,7 @@
+""" This module defines
+the MainWindow class, containing the GUI
+of the main app window
+"""
 from PySide6.QtWidgets import QMainWindow
 from PySide6 import QtGui
 from view.res.ui_main_window import Ui_MainWindow

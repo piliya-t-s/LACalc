@@ -1,3 +1,7 @@
+""" This module contains
+the controller class, binding GUI
+and internal logic
+"""
 import numpy as np
 from PySide6.QtWidgets import QMainWindow
 from PySide6.QtCore import Qt

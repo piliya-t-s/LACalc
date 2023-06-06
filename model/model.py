@@ -1,3 +1,6 @@
+""" This module contains
+the MatrixApp class with al the internal app logic
+"""
 import numpy as np
 from model.parser import parse_expression
 from pyparsing import ParseResults

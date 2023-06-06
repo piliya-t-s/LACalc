@@ -1,3 +1,7 @@
+""" This module defines
+the VarDialog class, containing the GUI
+of the variable editing popup dialog
+"""
 from .res.ui_dialog import Ui_var_dialog
 from PySide6.QtWidgets import QDialog
 from PySide6 import QtGui

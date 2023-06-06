@@ -1,5 +1,7 @@
+""" Parser module. Contains functions to help break down
+a string expression into operations
+"""
 import pyparsing as pp
-
 
 def parse_expression(string: str, variables: dict) -> pp.ParseResults:
     """ Parses a string into a nested array of operations """
