@@ -20,7 +20,6 @@ class MatrixApp:
             self.values[name] = float(value)
         except ValueError:
             try:
-                print(np.pyinstaarray(ast.literal_eval(value)))
                 self.values[name] = np.array(ast.literal_eval(value))
             except ValueError as e:
                 self.result = e
@@ -41,9 +40,8 @@ class MatrixApp:
             self.solve()
         except BaseException as e:
             self.result = str(e)
-        print(self.expression, self.result)
 
-    def solve(self) -> float | Matrix:
+    def solve(self) -> float | np.ndarray:
         """ Updates the result
         of the stored expression
         """
