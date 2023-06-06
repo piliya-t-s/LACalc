@@ -8,3 +8,4 @@ class VarDialog(QDialog, Ui_var_dialog):
         self.setupUi(self)
         self.var_name.setText(str(name))
         self.var_value.setText(str(val))
+        self.setWindowIcon(QtGui.QIcon('logo.ico'))
