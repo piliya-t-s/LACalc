@@ -9,16 +9,17 @@
 ################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
+                            QMetaObject, QObject, QPoint, QRect,
+                            QSize, QTime, QUrl, Qt)
 from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
+                           QFont, QFontDatabase, QGradient, QIcon,
+                           QImage, QKeySequence, QLinearGradient, QPainter,
+                           QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLineEdit, QListWidget,
-    QListWidgetItem, QMainWindow, QMenuBar, QPushButton,
-    QSizePolicy, QStatusBar, QTextBrowser, QVBoxLayout,
-    QWidget)
+                               QListWidgetItem, QMainWindow, QMenuBar, QPushButton,
+                               QSizePolicy, QStatusBar, QTextBrowser, QVBoxLayout,
+                               QWidget)
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -53,14 +54,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.del_button)
 
-
         self.horizontalLayout_2.addLayout(self.verticalLayout_2)
 
         self.result_panel = QTextBrowser(self.centralwidget)
         self.result_panel.setObjectName(u"result_panel")
 
         self.horizontalLayout_2.addWidget(self.result_panel)
-
 
         self.verticalLayout_3.addLayout(self.horizontalLayout_2)
 
@@ -76,6 +75,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         QMetaObject.connectSlotsByName(MainWindow)
+
     # setupUi
 
     def retranslateUi(self, MainWindow):
@@ -83,4 +83,3 @@ class Ui_MainWindow(object):
         self.add_button.setText(QCoreApplication.translate("MainWindow", u"Add", None))
         self.del_button.setText(QCoreApplication.translate("MainWindow", u"Remove", None))
     # retranslateUi
-

@@ -1,5 +1,6 @@
 from .res.ui_dialog import Ui_var_dialog
 from PySide6.QtWidgets import QDialog
+from PySide6 import QtGui
 
 
 class VarDialog(QDialog, Ui_var_dialog):

@@ -10,3 +10,4 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.app = app
         self.setWindowIcon(QtGui.QIcon('logo.ico'))
+        self.setWindowTitle("LACalc")
