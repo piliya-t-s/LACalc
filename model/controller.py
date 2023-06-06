@@ -7,6 +7,10 @@ from view.dialog import VarDialog
 
 
 class Controller:
+    """ A controller class, binding GUI
+    and business logic
+    """
+
     def __init__(self, model: MatrixApp, view: QMainWindow):
         self.model = model
         self.view = view
@@ -16,22 +20,26 @@ class Controller:
         self.view.del_button.clicked.connect(self.del_var_clicked)
 
     def update_app(self):
+        """ Update application state controller wrapper """
         self.model.expression = self.view.input_line.text()
         self.model.update()
         self.view.result_panel.setText(str(self.model.result))
 
     def del_var_clicked(self):
+        """ Delete button click handler """
         listItems = self.view.variable_list.selectedItems()
         if not listItems:
             return
         for item in listItems:
             print(item.text())
             self.model.del_variable(item.text())
-            self.view.variable_list.takeItem(self.view.variable_list.row(item))
+            row = self.view.variable_list.row(item)
+            self.view.variable_list.takeItem(row)
 
         self.update_app()
 
     def add_var_dialog(self, item=None):
+        """ Initiates a dialog window to add or edit a variable"""
         if not item:
             dlg = VarDialog("Name", "Value")
         else:
@@ -49,7 +57,9 @@ class Controller:
             try:
                 var_name = dlg.var_name.text()
                 self.model.set_variable(var_name, dlg.var_value.text())
-                if not self.view.variable_list.findItems(var_name, Qt.MatchFlag.MatchExactly):
+                flag = Qt.MatchFlag.MatchExactly
+                if not self.view.variable_list.findItems(var_name,
+                                                         flag):
                     self.view.variable_list.addItem(var_name)
             except ValueError as e:
                 self.model.result = e

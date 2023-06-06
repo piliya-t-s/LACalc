@@ -1,7 +1,8 @@
 import pyparsing as pp
 
 
-def parse_expression(string: str,  variables: dict) -> pp.ParseResults:
+def parse_expression(string: str, variables: dict) -> pp.ParseResults:
+    """ Parses a string into a nested array of operations """
     atom = pp.Word(pp.alphanums + "_")
 
     operators = [
@@ -21,7 +22,8 @@ def parse_expression(string: str,  variables: dict) -> pp.ParseResults:
     return evaluate_input(expr.parse_string(string), variables)
 
 
-def evaluate_input(expression: pp.ParseResults | list, variables: dict) -> pp.ParseResults:
+def evaluate_input(expression: pp.ParseResults | list, variables: dict):
+    """ Inserts values of the variables in expression """
     for num in range(len(expression)):
         if isinstance(expression[num], pp.ParseResults) or \
                 isinstance(expression[num], list):
@@ -35,7 +37,7 @@ def evaluate_input(expression: pp.ParseResults | list, variables: dict) -> pp.Pa
                 if expression.operator == "^" and (
                         expression[2] == "det" or
                         expression[2] == "T"
-                        ):
+                ):
                     pass  # reserved for determinant and transposition operations
                 else:
                     raise TypeError(f'No variable named {expression[num]}')
