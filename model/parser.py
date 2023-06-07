@@ -43,6 +43,3 @@ def evaluate_input(expression: pp.ParseResults | list, variables: dict):
                     raise TypeError(f'No variable named {expression[num]}')
 
     return expression
-
-
-print(parse_expression("A*B*C", {"A": 5, "B": 4, "C": 3}))
