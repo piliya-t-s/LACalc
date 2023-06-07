@@ -62,31 +62,30 @@ class MatrixApp:
         elif len(expression) == 1:
             return self.__compute(expression[0])
 
-        match expression.operator:
-            case "*":
+        if expression.operator == "*":
+            return self.__compute(expression[0]) \
+                * self.__compute(expression[2])
+        if expression.operator == "/":
+            return self.__compute(expression[0]) \
+                / self.__compute(expression[2])
+        if expression.operator == "+":
+            return self.__compute(expression[0]) \
+                + self.__compute(expression[2])
+        if expression.operator == "-":
+            if len(expression) == 2:
+                return -self.__compute(expression[1])
+            else:
                 return self.__compute(expression[0]) \
-                    * self.__compute(expression[2])
-            case "/":
-                return self.__compute(expression[0]) \
-                    / self.__compute(expression[2])
-            case "+":
-                return self.__compute(expression[0]) \
-                    + self.__compute(expression[2])
-            case "-":
-                if len(expression) == 2:
-                    return -self.__compute(expression[1])
-                else:
-                    return self.__compute(expression[0]) \
-                        - self.__compute(expression[2])
-            case "^":
-                if isinstance(self.__compute(expression[0]),
-                              np.ndarray | np.generic):
-                    if self.__compute(expression[2]) is -1:
-                        return np.linalg.inv(self.__compute(expression[0]))
-                    elif self.__compute(expression[2]) == "T":
-                        return np.transpose(self.__compute(expression[0]))
-                    elif self.__compute(expression[2]) == "det":
-                        return np.linalg.det(self.__compute(expression[0]))
+                    - self.__compute(expression[2])
+        if expression.operator == "^":
+            if isinstance(self.__compute(expression[0]),
+                          np.ndarray | np.generic):
+                if self.__compute(expression[2]) is -1:
+                    return np.linalg.inv(self.__compute(expression[0]))
+                elif self.__compute(expression[2]) == "T":
+                    return np.transpose(self.__compute(expression[0]))
+                elif self.__compute(expression[2]) == "det":
+                    return np.linalg.det(self.__compute(expression[0]))
 
-                return self.__compute(expression[0]) \
-                    ** self.__compute(expression[2])
+            return self.__compute(expression[0]) \
+                ** self.__compute(expression[2])
