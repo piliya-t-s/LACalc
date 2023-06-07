@@ -80,7 +80,7 @@ class MatrixApp:
         if expression.operator == "^":
             if isinstance(self.__compute(expression[0]),
                           np.ndarray | np.generic):
-                if self.__compute(expression[2]) is -1:
+                if self.__compute(expression[2]) == -1:
                     return np.linalg.inv(self.__compute(expression[0]))
                 elif self.__compute(expression[2]) == "T":
                     return np.transpose(self.__compute(expression[0]))
