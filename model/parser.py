@@ -3,20 +3,18 @@ a string expression into operations
 """
 import pyparsing as pp
 
+
 def parse_expression(string: str, variables: dict) -> pp.ParseResults:
     """ Parses a string into a nested array of operations """
     atom = pp.Word(pp.alphanums + "_")
 
     operators = [
-        (pp.Literal("-").setResultsName("operator"),
-         1, pp.opAssoc.RIGHT),
-        (pp.one_of("^").setResultsName("operator") |
-         pp.CaselessKeyword("X").setResultsName("operator"),
-         2, pp.opAssoc.LEFT),
-        (pp.one_of("* /").setResultsName("operator"),
-         2, pp.opAssoc.LEFT),
-        (pp.one_of("+ -").setResultsName("operator"),
-         2, pp.opAssoc.LEFT),
+        (pp.Literal("-").setResultsName("operator"), 1, pp.opAssoc.RIGHT),
+        (pp.Literal("^").setResultsName("operator"), 2, pp.opAssoc.LEFT),
+        (pp.Literal("*").setResultsName("operator"), 2, pp.opAssoc.RIGHT),
+        (pp.Literal("/").setResultsName("operator"), 2, pp.opAssoc.LEFT),
+        (pp.Literal("+").setResultsName("operator"), 2, pp.opAssoc.LEFT),
+        (pp.Literal("-").setResultsName("operator"), 2, pp.opAssoc.LEFT),
     ]
 
     expr = pp.infix_notation(atom, operators)
@@ -45,3 +43,6 @@ def evaluate_input(expression: pp.ParseResults | list, variables: dict):
                     raise TypeError(f'No variable named {expression[num]}')
 
     return expression
+
+
+print(parse_expression("A*B*C", {"A": 5, "B": 4, "C": 3}))
